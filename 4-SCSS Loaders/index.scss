@@ -1,0 +1,12 @@
+#header {
+    text-decoration: underline;
+    color: aqua;
+}
+
+.button {
+    background: blueviolet;
+}
+
+:global(.para) {
+    color: brown;
+}

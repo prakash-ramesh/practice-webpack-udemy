@@ -1,0 +1,5 @@
+1) MiniCssExtractPlugin
+2) Shimming
+3) Remove Dead CSS
+4) Remove Dead JS - Tree Shaking (taken care in ==> mode --production)
+5) Splitting webpack Config for dev and prod
