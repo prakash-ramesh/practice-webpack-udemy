@@ -1,15 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
-const {PurgeCSSPlugin} = require("purgecss-webpack-plugin");
-const glob = require("glob");
-
-const purgePath = {
-  src: path.join(__dirname, "src")
-};
 
 module.exports = {
   entry: {
@@ -21,19 +13,8 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-  devServer: {
-    static: "./dist",
-  },
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.s[ac]ss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
+    rules: [      
       {
         test: /\.(png|jpeg|jpg|gif)$/,
         type: "asset/resource",
@@ -61,19 +42,13 @@ module.exports = {
         },
       ],
     }),
-    // new BundleAnalyzerPlugin({}),
-    new MiniCssExtractPlugin(),
     new webpack.ProvidePlugin({
       mnt: "moment"
     }),
-    new PurgeCSSPlugin({
-      paths: glob.sync(`${purgePath.src}/**/*`, {nodir: true}),
-      safelist: ["cls-to-ignore"]
-    })
   ],
   optimization: {
     splitChunks: {
       chunks: "all",
     },
-  },
+  }
 };
